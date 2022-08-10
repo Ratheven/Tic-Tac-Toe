@@ -1,9 +1,12 @@
-import Board from "./components/board";
+import Game from "./components/Game";
 
 function App() {
   return (
-    "hello worlddd"
-  );
+    <>
+    <Game/>
+    </>
+    
+  )
 }
 
 export default App;
