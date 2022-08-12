@@ -1,21 +1,24 @@
 import styled from "styled-components";
-const Square = ({ value, onClick }) => {
+//recieve
+const Square = ({ square, onClick }) => {
   return (
     <>
       <Button
-        style={{ color: (value = "x" ? "blue" : "red") }}
+        // call the function when the button is clicked
         onClick={onClick}
+        square={square}
       >
-        {value}{" "}
+        {/* print the value */}
+        {square}
       </Button>
     </>
   );
 };
 const Button = styled.button`
-  border: 2px solid orange;
+  color: ${({square})=>(square==="X"? "blue": "red")};
+  border: 1px solid orange;
   font-size: 40px;
   font-weight: 800;
   cursor: pointer;
-  outline: no;
 `;
 export default Square;

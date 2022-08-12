@@ -1,22 +1,23 @@
 import styled from "styled-components";
 import Square from "./Square";
-
-const Board = ({squares, onClick}) => {
+//recieve board as prop save in squares and recieve handleClick as onClick
+const Board = ({squares, onClick,}) => {
   return (
     <Container>
+      {/* //map the array */}
   {squares.map((square, i)=>(
-    <Square key={i} value={square} onClick={()=>onClick(i)}/>
+
+    //pass each index to a square, and pass the function call handleClick with the index as a parameter
+    <Square key={i} square={square} onClick={()=>onClick(i)} />
   ))}
     </Container>
   );
 };
 
 const Container = styled.div`
-  border: 4px solid purple;
- border-radius: 10px;
+  border-radius: 10px;
   width: 550px;
   height: 250px;
-
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 `;
