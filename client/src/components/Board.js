@@ -16,8 +16,8 @@ const Board = ({squares, onClick,}) => {
 
 const Container = styled.div`
   border-radius: 10px;
-  width: 550px;
-  height: 250px;
+  width: 700px;
+  height: 550px;
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 `;

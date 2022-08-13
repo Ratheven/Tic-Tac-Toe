@@ -1,6 +1,8 @@
-import styled from "styled-components"
+
+import styled, { keyframes } from "styled-components"
 
 const Header = ({winner, xIsNext})=> {
+
     return (
         <>
         <ContainerGame>
@@ -10,6 +12,9 @@ const Header = ({winner, xIsNext})=> {
             <X xIsNext={xIsNext}>
                 Player X
             </X>
+            <Rotate>
+                XO
+            </Rotate>
             <O xIsNext={xIsNext}>
                 Player O
             </O>
@@ -17,18 +22,45 @@ const Header = ({winner, xIsNext})=> {
         </>
     )
 }
+const Div = styled.div`
+font-size: 40px;
+`
 const ContainerPlayer = styled.div`
 display: flex;
 justify-content: space-between;
+height: 70px;
 `
 const X = styled.p`
-border-bottom: ${({xIsNext})=> (xIsNext? "5px solid blue": "0.01px solid blue")};
+font-size: 40px;
+border-bottom: ${({xIsNext})=> (xIsNext? "5px solid blue": "1px solid blue")};
+transition: ease-in-out 300ms;
+max-height: 50px;
+
 `
 const O = styled.p`
-border-bottom: ${({xIsNext})=>(!xIsNext? "5px solid red": "0.01px solid red")};
+font-size: 40px;
+border-bottom: ${({xIsNext})=>(!xIsNext? "5px solid red": "1px solid red")};
+transition: ease-in-out 300ms;
+max-height: 50px;
 `
-const ContainerGame = styled.div`
+const ContainerGame = styled.p`
 display: flex;
 justify-content: center;
+font-size: 40px;
 `
+const rotate =keyframes`
+from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`
+const Rotate = styled.div`
+  display: inline-block;
+  animation: ${rotate} 2s linear infinite;
+  padding: 2rem 1rem;
+  font-size: 1.2rem;
+`;
 export default Header
