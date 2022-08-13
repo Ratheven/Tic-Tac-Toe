@@ -9,7 +9,7 @@ const Game = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
   //This state is used to deteremine who is the next player
   const [xIsNext, setXIsNext] = useState(true);
-  //call caculateWinner and pass the board as a parameter and save it in winner, if there is a winner it will return 
+  //call caculateWinner and pass the board as a parameter and save it in winner, if there is a winner it will return
   const winner = caculateWinner(board);
 
   const handleClick = (i) => {
@@ -33,26 +33,33 @@ const Game = () => {
   };
 
   //check fi there is a tie Game//
-  const TieGame = (element)=> {
-    if(!element === null){
-      return true
+  const TieGame = (element) => {
+    if (!element === null) {
+      return true;
     }
-  }
-  const Tie = board.every(TieGame)
+  };
+  const Tie = board.every(TieGame);
 
   return (
     <Container>
-    <Header winner={winner} xIsNext={xIsNext}/>
+      <Div>
+        <Header winner={winner} xIsNext={xIsNext} />
+      </Div>
       {/* pass the array and the handleClick as props */}
       <Board squares={board} onClick={handleClick} />
       <div>
-       {winner || Tie ? <button onClick={() => handleRestart()}>Restart</button>: null}
+        {winner || Tie ? (
+          <button onClick={() => handleRestart()}>Restart</button>
+        ) : null}
         {/* calls the function to restart the game if theres a winner */}
       </div>
     </Container>
   );
 };
 const Container = styled.div`
- width: 550px;
+  width: 700px;
+`;
+const Div = styled.div`
+margin-bottom: 10px;
 `
 export default Game;
