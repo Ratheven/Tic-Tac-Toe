@@ -24,7 +24,7 @@ const Game = () => {
     //Update the board//
     setBoard(board);
     //Update whos next by converting it to the opposite boolean
-    setXIsNext(!xIsNext);
+    !tie && setXIsNext(!xIsNext);
     TieGame();
   };
 
@@ -35,37 +35,39 @@ const Game = () => {
     setXIsNext(true);
   };
 
-  //check if there is a tie Game//
+  //check if there is a tie //
   const TieGame = () => {
-    board.forEach((element) => {
-      if (element !== null) {
-        setTie(true);
-      }
+    let tieGame = board.every((element) => {
+      return element;
     });
+
+    tieGame && setTie(true);
   };
 
   return (
     <Container>
       <Div>
-        <Header winner={winner} xIsNext={xIsNext} />
+        <Header winner={winner} xIsNext={xIsNext} tie={tie} />
       </Div>
       {/* pass the array and the handleClick as props */}
       <Board squares={board} onClick={handleClick} />
-      <WinnerWrapper>{winner && <Winner>Winner Player {xIsNext ? "O" : "X"}</Winner>}
-        </WinnerWrapper>
+      <WinnerWrapper>
+        {winner && !tie && <Winner>Winner Player {xIsNext ? "O" : "X"}</Winner>}
+        {!winner && tie && <Winner>Tie Game</Winner>}
+      </WinnerWrapper>
       <ButtonWrapper>
         {winner || tie ? (
           <Restart onClick={() => handleRestart()}>Restart</Restart>
-          ) : null}
+        ) : null}
         {/* calls the function to restart the game if theres a winner */}
       </ButtonWrapper>
     </Container>
   );
 };
 const ButtonWrapper = styled.div`
-display: flex;
-justify-content: center;
-`
+  display: flex;
+  justify-content: center;
+`;
 const Restart = styled.button`
   border: none;
   border-radius: 5px;
@@ -82,14 +84,14 @@ const Restart = styled.button`
     background-color: red;
     color: #00515c;
   }
-`
+`;
 const WinnerWrapper = styled.div`
-display: flex;
-justify-content: center;
-`
+  display: flex;
+  justify-content: center;
+`;
 const Winner = styled.p`
-font-size: 40px;
-`
+  font-size: 40px;
+`;
 const Container = styled.div`
   width: 700px;
 `;
